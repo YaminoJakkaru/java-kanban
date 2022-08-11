@@ -34,6 +34,6 @@ Repository for homework project.
 
 во всех остальных случаях статус должен быть IN_PROGRESS.
 
-Все функции достуны через объект класса "Manager".
+Все функции достуны через объект класса "ru.yandex.practicum.Manager.ru.yandex.practicum.Manager".
 
 Проверка кода осущетвлена в классе "Main"

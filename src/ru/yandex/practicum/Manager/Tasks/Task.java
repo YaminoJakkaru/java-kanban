@@ -1,15 +1,16 @@
+package ru.yandex.practicum.Manager.Tasks;
+
 import java.util.Objects;
 
 public class Task {
-  private   String name;
-  private   String description;
-   private int identificationNumber=0;
-   private String status;
+    private String name;
+    private String description;
+    private int identificationNumber = 0;
+    private String status;
 
-    public Task(String name, String description ,  String status) {
+    public Task(String name, String description, String status) {
         this.name = name;
         this.description = description;
-        ;
         this.status = status;
     }
 
@@ -54,8 +55,13 @@ public class Task {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(name, description, identificationNumber, status);
+    }
+
+    @Override
     public String toString() {
-        return "Task{" +
+        return "ru.yandex.practicum.Manager.Tasks.Task{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", identificationNumber=" + identificationNumber +
