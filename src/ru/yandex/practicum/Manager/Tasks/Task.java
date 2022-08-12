@@ -5,12 +5,13 @@ import java.util.Objects;
 public class Task {
     private String name;
     private String description;
-    private int identificationNumber = 0;
-    private String status;
+    private int identificationNumber ;
+    private Status status;
 
-    public Task(String name, String description, String status) {
+    public Task(String name, String description,int identificationNumber,  Status status) {
         this.name = name;
         this.description = description;
+        this.identificationNumber = identificationNumber;
         this.status = status;
     }
 
@@ -26,7 +27,7 @@ public class Task {
         return identificationNumber;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
@@ -42,7 +43,7 @@ public class Task {
         this.identificationNumber = identificationNumber;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
