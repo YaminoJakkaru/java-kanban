@@ -61,6 +61,7 @@ public class Main {
         System.out.println(manager.getEpic(5));
         System.out.println(manager.getEpic(5));
 
+
             System.out.println("История:");
         System.out.println(manager.getHistory().size());
         System.out.println(manager.getHistory());
@@ -70,6 +71,15 @@ public class Main {
         System.out.println(manager.getHistory().size());
         System.out.println(manager.getHistory());
 
+            System.out.println("История:");
+        System.out.println(manager.getHistory().size());
+        System.out.println(manager.getHistory());
+        System.out.println(manager.getTask(1));
+        System.out.println(manager.getTask(1));
+        System.out.println("История:");
+        System.out.println(manager.getHistory().size());
+        System.out.println(manager.getHistory());
+        manager.deleteTask(345);
 
 
 
