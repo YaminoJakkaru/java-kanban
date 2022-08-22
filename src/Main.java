@@ -1,13 +1,14 @@
-import ru.yandex.practicum.Manager.Manager;
-import ru.yandex.practicum.Manager.Tasks.Epic;
-import ru.yandex.practicum.Manager.Tasks.Status;
-import ru.yandex.practicum.Manager.Tasks.Subtask;
-import ru.yandex.practicum.Manager.Tasks.Task;
+import ru.yandex.practicum.Managers.Managers;
+import ru.yandex.practicum.Managers.TaskManager;
+import ru.yandex.practicum.Tasks.Epic;
+import ru.yandex.practicum.Tasks.Status;
+import ru.yandex.practicum.Tasks.Subtask;
+import ru.yandex.practicum.Tasks.Task;
 
 public class Main {
     public static void main(String[] args) {
 
-        Manager manager = new Manager();
+        TaskManager manager = Managers.getDefault();
         int i = 0;
         while (i < 2) {
             i++;
@@ -49,6 +50,25 @@ public class Main {
         System.out.println(manager.getEpic(3)+"\n"+manager.getEpicSubtasks(3));
         manager.deleteSubtask(6);
         System.out.println(manager.getEpic(5)+"\n"+manager.getEpicSubtasks(5));
+        System.out.println(manager.getSubtask(4));
+        System.out.println(manager.getSubtask(4));
+        System.out.println("История:");
+        System.out.println(manager.getHistory().size());
+        System.out.println(manager.getHistory());
+            System.out.println(manager.getTask(1));
+        System.out.println(manager.getEpic(5));
+        System.out.println(manager.getEpic(5));
+        System.out.println(manager.getEpic(5));
+        System.out.println(manager.getEpic(5));
+
+            System.out.println("История:");
+        System.out.println(manager.getHistory().size());
+        System.out.println(manager.getHistory());
+        System.out.println(manager.getTask(1));
+        System.out.println(manager.getTask(1));
+        System.out.println("История:");
+        System.out.println(manager.getHistory().size());
+        System.out.println(manager.getHistory());
 
 
 
