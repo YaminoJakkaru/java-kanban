@@ -1,11 +1,11 @@
-package ru.yandex.practicum.Manager.Tasks;
+package ru.yandex.practicum.Tasks;
 
 import java.util.Objects;
 
 public class Subtask extends Task {
     private int epicId;
 
-    public Subtask(String name, String description,int identificationNumber, Status status, int epicId) {
+    public Subtask(String name, String description, int identificationNumber, Status status, int epicId) {
         super(name, description, identificationNumber, status);
         this.epicId = epicId;
     }
@@ -36,7 +36,7 @@ public class Subtask extends Task {
 
     @Override
     public String toString() {
-        return "ru.yandex.practicum.Manager.Tasks.Subtask{" +
+        return "ru.yandex.practicum.Manager.InMemoryTaskManager.Tasks.Subtask{" +
                 "name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +
                 ", identificationNumber=" + getIdentificationNumber() +

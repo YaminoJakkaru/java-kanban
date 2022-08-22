@@ -1,14 +1,14 @@
-package ru.yandex.practicum.Manager.Tasks;
+package ru.yandex.practicum.Tasks;
 
 import java.util.Objects;
 
 public class Task {
     private String name;
     private String description;
-    private int identificationNumber ;
+    private int identificationNumber;
     private Status status;
 
-    public Task(String name, String description,int identificationNumber,  Status status) {
+    public Task(String name, String description, int identificationNumber, Status status) {
         this.name = name;
         this.description = description;
         this.identificationNumber = identificationNumber;
@@ -62,7 +62,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "ru.yandex.practicum.Manager.Tasks.Task{" +
+        return "ru.yandex.practicum.Manager.InMemoryTaskManager.Tasks.Task{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", identificationNumber=" + identificationNumber +
