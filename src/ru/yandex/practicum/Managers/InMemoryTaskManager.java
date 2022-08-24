@@ -24,30 +24,32 @@ public class InMemoryTaskManager implements TaskManager {
 
     }
 
-    @Override
+
     public int getNewId() {
         return ++IdentificationNumber;
     }
 
     @Override
-    public void addTask(Task task) {
+    public int addTask(Task task) {
         task.setIdentificationNumber(getNewId());
         tasks.put(task.getIdentificationNumber(), task);
-
+return task.getIdentificationNumber();
     }
 
     @Override
-    public void addSubtask(Subtask subtask) {
+    public int addSubtask(Subtask subtask) {
         subtask.setIdentificationNumber(getNewId());
         epics.get(subtask.getEpic()).addSubtask(subtask.getIdentificationNumber());
         subtasks.put(subtask.getIdentificationNumber(), subtask);
         updateEpicStatus(subtask.getEpic());
+        return subtask.getIdentificationNumber();
     }
 
     @Override
-    public void addEpic(Epic epic) {
+    public int addEpic(Epic epic) {
         epic.setIdentificationNumber(getNewId());
         epics.put(epic.getIdentificationNumber(), epic);
+        return epic.getIdentificationNumber();
     }
 
     @Override
@@ -140,7 +142,7 @@ public class InMemoryTaskManager implements TaskManager {
         updateEpicStatus(subtasks.get(subtask.getIdentificationNumber()).getEpic());
     }
 
-    @Override
+
     public void updateEpicStatus(int id) {
         int doneSubtasks = 0;
 
