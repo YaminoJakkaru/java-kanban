@@ -4,6 +4,7 @@ import ru.yandex.practicum.Tasks.Epic;
 import ru.yandex.practicum.Tasks.Status;
 import ru.yandex.practicum.Tasks.Subtask;
 import ru.yandex.practicum.Tasks.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +19,7 @@ public class InMemoryTaskManager implements TaskManager {
     int IdentificationNumber = 0;
 
     public InMemoryTaskManager() {
-        historyManager= Managers.getDefaultHistory();
+        historyManager = Managers.getDefaultHistory();
         epics = new HashMap<>();
         tasks = new HashMap<>();
         subtasks = new HashMap<>();
@@ -34,7 +35,7 @@ public class InMemoryTaskManager implements TaskManager {
     public int addTask(Task task) {
         task.setIdentificationNumber(getNewId());
         tasks.put(task.getIdentificationNumber(), task);
-return task.getIdentificationNumber();
+        return task.getIdentificationNumber();
     }
 
     @Override
@@ -110,10 +111,10 @@ return task.getIdentificationNumber();
 
     @Override
     public Task getTask(int id) {
-        for(Task task: tasks.values()){
+        for (Task task : tasks.values()) {
             historyManager.remove(task.getIdentificationNumber());
         }
-       historyManager.add(tasks.get(id));
+        historyManager.add(tasks.get(id));
         return tasks.get(id);
     }
 
@@ -207,7 +208,7 @@ return task.getIdentificationNumber();
     }
 
     @Override
-    public List<Task> getHistory(){
+    public List<Task> getHistory() {
         return historyManager.getHistory();
 
     }
