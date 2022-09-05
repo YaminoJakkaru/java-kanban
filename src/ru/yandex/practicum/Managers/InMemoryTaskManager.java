@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class InMemoryTaskManager implements TaskManager {
-    HistoryManager historyManager= Managers.getDefaultHistory();
+    private final HistoryManager historyManager;
     private final HashMap<Integer, Epic> epics;
     private final HashMap<Integer, Task> tasks;
     private final HashMap<Integer, Subtask> subtasks;
@@ -18,6 +18,7 @@ public class InMemoryTaskManager implements TaskManager {
     int IdentificationNumber = 0;
 
     public InMemoryTaskManager() {
+        historyManager= Managers.getDefaultHistory();
         epics = new HashMap<>();
         tasks = new HashMap<>();
         subtasks = new HashMap<>();
@@ -25,7 +26,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
 
-    public int getNewId() {
+    private int getNewId() {
         return ++IdentificationNumber;
     }
 
@@ -86,6 +87,9 @@ return task.getIdentificationNumber();
 
     @Override
     public void deleteAllSubtasks() {
+        for (Subtask subtask : subtasks.values()) {
+            historyManager.remove(subtask.getIdentificationNumber());
+        }
         subtasks.clear();
         for (Epic epic : epics.values()) {
             epic.deleteAllSubtasks();
@@ -95,12 +99,20 @@ return task.getIdentificationNumber();
 
     @Override
     public void deleteAllEpics() {
+        for (Epic epic : epics.values()) {
+            historyManager.remove(epic.getIdentificationNumber());
+        }
+
         epics.clear();
         deleteAllSubtasks();
+
     }
 
     @Override
     public Task getTask(int id) {
+        for(Task task: tasks.values()){
+            historyManager.remove(task.getIdentificationNumber());
+        }
        historyManager.add(tasks.get(id));
         return tasks.get(id);
     }
@@ -143,7 +155,7 @@ return task.getIdentificationNumber();
     }
 
 
-    public void updateEpicStatus(int id) {
+    private void updateEpicStatus(int id) {
         int doneSubtasks = 0;
 
         for (int subtaskId : epics.get(id).getSubtasks()) {
@@ -167,15 +179,18 @@ return task.getIdentificationNumber();
     @Override
     public void deleteTask(int id) {
         tasks.remove(id);
+        historyManager.remove(id);
     }
 
     @Override
     public void deleteEpic(int id) {
         if (epics.containsKey(id)) {
             for (int subtaskId : epics.get(id).getSubtasks()) {
+                historyManager.remove(subtaskId);
                 subtasks.remove(subtaskId);
             }
             epics.remove(id);
+            historyManager.remove(id);
         }
     }
 
@@ -186,6 +201,7 @@ return task.getIdentificationNumber();
             epics.get(epicId).getSubtasks().remove((Integer) id);
             subtasks.remove(id);
             updateEpicStatus(epicId);
+            historyManager.remove(id);
 
         }
     }
