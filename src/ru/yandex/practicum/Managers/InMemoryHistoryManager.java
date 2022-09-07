@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class InMemoryHistoryManager implements HistoryManager {
 
     private final HashMap<Integer, Node<Task>> history;
-    private static final int MAX_COUNT_ELEMENTS = 11;
+    private static final int MAX_COUNT_ELEMENTS = 10;
     public Node<Task> head;
     public Node<Task> tail;
 
@@ -52,7 +52,7 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void add(Task task) {
-        if (history.size() == MAX_COUNT_ELEMENTS) {
+        if (history.size() > MAX_COUNT_ELEMENTS) {
             remove(head.next.data.getIdentificationNumber());
 
         }
