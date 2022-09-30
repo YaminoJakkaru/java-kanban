@@ -7,8 +7,9 @@ public class Epic extends Task {
 
     private final ArrayList<Integer> subtasks;
 
-    public Epic(String name, String description, int identificationNumber, Status status) {
-        super(name, description, identificationNumber, status);
+
+    public Epic( int identificationNumber,String name, Status status, String description) {
+        super( identificationNumber, name,status, description);
         subtasks = new ArrayList<>();
     }
 
@@ -24,6 +25,8 @@ public class Epic extends Task {
     public void deleteAllSubtasks() {
         subtasks.clear();
     }
+    @Override
+    public Type getType(){return Type.EPIC;}
 
     @Override
     public boolean equals(Object o) {
@@ -43,10 +46,7 @@ public class Epic extends Task {
 
     @Override
     public String toString() {
-        return "ru.yandex.practicum.Manager.InMemoryTaskManager.Tasks.Epic{" +
-                "name='" + getName() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", identificationNumber=" + getIdentificationNumber() +
-                ", status='" + getStatus() + '\'' + '}';
+        return  getIdentificationNumber()+","+getType()+"," + getName() + ","+getStatus()+
+                "," + getDescription();
     }
 }

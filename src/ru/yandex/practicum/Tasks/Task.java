@@ -8,7 +8,8 @@ public class Task {
     private int identificationNumber;
     private Status status;
 
-    public Task(String name, String description, int identificationNumber, Status status) {
+
+    public Task( int identificationNumber,String name, Status status, String description) {
         this.name = name;
         this.description = description;
         this.identificationNumber = identificationNumber;
@@ -30,6 +31,7 @@ public class Task {
     public Status getStatus() {
         return status;
     }
+    public Type getType(){return Type.TASK;}
 
     public void setName(String name) {
         this.name = name;
@@ -62,11 +64,8 @@ public class Task {
 
     @Override
     public String toString() {
-        return "ru.yandex.practicum.Manager.InMemoryTaskManager.Tasks.Task{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", identificationNumber=" + identificationNumber +
-                ", status='" + status + '\'' +
-                '}';
+        return  getIdentificationNumber()+","+getType()+"," + getName() + ","+getStatus()+
+                "," + getDescription();
+
     }
 }

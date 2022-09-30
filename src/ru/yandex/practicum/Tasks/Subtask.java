@@ -5,8 +5,9 @@ import java.util.Objects;
 public class Subtask extends Task {
     private int epicId;
 
-    public Subtask(String name, String description, int identificationNumber, Status status, int epicId) {
-        super(name, description, identificationNumber, status);
+
+    public Subtask(int identificationNumber,String name, Status status, String description, int epicId) {
+        super(identificationNumber, name,status, description);
         this.epicId = epicId;
     }
 
@@ -17,6 +18,8 @@ public class Subtask extends Task {
     public void setEpicId(int epicId) {
         this.epicId = epicId;
     }
+    @Override
+    public Type getType(){return Type.SUBTASK;}
 
     @Override
     public boolean equals(Object o) {
@@ -36,13 +39,8 @@ public class Subtask extends Task {
 
     @Override
     public String toString() {
-        return "ru.yandex.practicum.Manager.InMemoryTaskManager.Tasks.Subtask{" +
-                "name='" + getName() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", identificationNumber=" + getIdentificationNumber() +
-                ", status='" + getStatus() + '\'' +
-                ", epicId='" + epicId +
-                '}';
+        return  getIdentificationNumber()+","+getType()+"," + getName() + ","+getStatus()+
+                "," + getDescription()+","+getEpic();
     }
 
 }

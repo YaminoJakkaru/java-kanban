@@ -50,6 +50,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     @Override
     public void add(Task task) {
         Node<Task> newNode = new Node<>(task);
+
         if (history.containsKey(task.getIdentificationNumber())) {
             remove(task.getIdentificationNumber());
         }
