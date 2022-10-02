@@ -6,8 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
 import java.util.*;
 
 
@@ -41,12 +40,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                 bw.newLine();
             }
             bw.newLine();
-            Collection<Task> valuesH = getHistory();
-            StringBuilder builder = new StringBuilder();
-            for (Task value : valuesH) {
-                builder.append(value.getIdentificationNumber()).append(",");
-            }
-            bw.write(builder.toString());
+
+            bw.write(historyToString(historyManager));
         } catch (IOException e) {
             throw new ManagerSaveException();
         }
