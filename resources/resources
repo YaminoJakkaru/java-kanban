@@ -1,0 +1,17 @@
+id,type,name,status,description,epic
+6,TASK, о ,NEW,Status.NEW
+7,TASK, о ,IN_PROGRESS,Stat
+13,TASK, о ,NEW,Status.NEW
+14,TASK, о ,IN_PROGRESS,Stat
+1,EPIC, о ,NEW,Status.NEW
+5,EPIC, ой ,NEW,Status.NEW
+8,EPIC, о ,NEW,Status.NEW
+12,EPIC, ой ,NEW,Status.NEW
+2,SUBTASK, ок ,NEW,Status.NEW,1
+3,SUBTASK, о ,NEW,Status.NEW,1
+4,SUBTASK, ей ,NEW,Status.NEW,1
+9,SUBTASK, ок ,NEW,Status.NEW,1
+10,SUBTASK, о ,NEW,Status.NEW,1
+11,SUBTASK, ей ,NEW,Status.NEW,1
+
+7,

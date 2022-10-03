@@ -11,12 +11,12 @@ import java.util.List;
 
 
 public class InMemoryTaskManager implements TaskManager {
-    protected  final HistoryManager historyManager;
-    protected   final HashMap<Integer, Epic > epics ;
-     protected  final HashMap<Integer, Task> tasks;
-    protected  final HashMap<Integer, Subtask> subtasks;
+    protected final HistoryManager historyManager;
+    protected final HashMap<Integer, Epic> epics;
+    protected final HashMap<Integer, Task> tasks;
+    protected final HashMap<Integer, Subtask> subtasks;
 
-    int IdentificationNumber = 0;
+    protected int identificationNumber = 0;
 
     public InMemoryTaskManager() {
         historyManager = Managers.getDefaultHistory();
@@ -28,7 +28,7 @@ public class InMemoryTaskManager implements TaskManager {
 
 
     private int getNewId() {
-        return ++IdentificationNumber;
+        return ++identificationNumber;
     }
 
     @Override

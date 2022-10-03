@@ -23,16 +23,15 @@ public class Managers {
 
     public static FileBackedTaskManager loadFromFile(File file) {
         final FileBackedTaskManager taskManager = new FileBackedTaskManager(file);
+
         try {
             int maxId = 0;
             String text = Files.readString(Path.of(file.getPath()));
             String[] lines = text.split(System.lineSeparator());
+
             for (int i = 1; i < lines.length - 2; i++) {
                 Task task = taskManager.fromString(lines[i]);
-                if (maxId < task.getIdentificationNumber()) {
-                    maxId = task.getIdentificationNumber();
-                }
-
+                maxId = Math.max(maxId, task.getIdentificationNumber());
 
                 switch (task.getType()) {
                     case TASK:
@@ -46,30 +45,20 @@ public class Managers {
                         taskManager.epics.get(((Subtask) task).getEpic()).addSubtask(task.getIdentificationNumber());
                         break;
                 }
+                taskManager.identificationNumber = maxId;
 
-                taskManager.IdentificationNumber = maxId;
-                try {
-
-
-                    for (int id : Objects.requireNonNull(historyFromString(Files.readString(Path.of(file.getPath()))))) {
-                        if (taskManager.tasks.containsKey(id)) {
-                            taskManager.historyManager.add(taskManager.getTask(id));
-                        } else if (taskManager.epics.containsKey(id)) {
-                            taskManager.historyManager.add(taskManager.getEpic(id));
-                        } else {
-                            taskManager.historyManager.add(taskManager.getSubtask(id));
-                        }
+                for (int id : Objects.requireNonNull(historyFromString(Files.readString(Path.of(file.getPath()))))) {
+                    if (taskManager.tasks.containsKey(id)) {
+                        taskManager.historyManager.add(taskManager.getTask(id));
+                    } else if (taskManager.epics.containsKey(id)) {
+                        taskManager.historyManager.add(taskManager.getEpic(id));
+                    } else if (taskManager.subtasks.containsKey(id)){
+                        taskManager.historyManager.add(taskManager.getSubtask(id));
                     }
-                } catch (NullPointerException ignored) {
-
                 }
             }
-
-
-
         } catch (IOException e) {
-           throw   new ManagerSaveException();
-
+            throw new ManagerSaveException();
         }
         return taskManager;
     }

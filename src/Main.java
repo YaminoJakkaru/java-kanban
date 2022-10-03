@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
-        FileBackedTaskManager manager = Managers.loadFromFile(new File("D:\\Users\\Vanya\\idea.project\\java-kanban\\resources\\resources"));
+        FileBackedTaskManager manager = Managers.loadFromFile(new File("resources/resources"));
         manager.addEpic(new Epic(0, " о ", Status.NEW, "Status.NEW"));
         manager.addSubtask(new Subtask(0, " ок ", Status.NEW, "Status.NEW", 1));
         manager.addSubtask(new Subtask(0, " о ", Status.NEW, "Status.NEW", 1));
@@ -30,7 +30,7 @@ public class Main {
         System.out.println(manager.getSubtask(4));
         System.out.println(manager.getEpic(1));
         System.out.println(manager.getHistory());
-        FileBackedTaskManager manager2 = Managers.loadFromFile(new File("D:\\Users\\Vanya\\idea.project\\java-kanban\\resources\\resources"));
+        FileBackedTaskManager manager2 = Managers.loadFromFile(new File("resources/resources"));
         manager2.addTask(new Task(0, " о ", Status.IN_PROGRESS, "Stat"));
         System.out.println(manager2.getTask(7));
         System.out.println(manager2.getHistory());
