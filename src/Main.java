@@ -33,7 +33,20 @@ public class Main {
         FileBackedTaskManager manager2 = Managers.loadFromFile(new File("resources/resources"));
         manager2.addTask(new Task(0, " о ", Status.IN_PROGRESS, "Stat"));
         System.out.println(manager2.getTask(7));
+        System.out.println(manager2.getEpic(1));
+        System.out.println(manager2.getEpic(5));
+        System.out.println(manager2.getEpic(1));
         System.out.println(manager2.getHistory());
+        System.out.println(manager2.getTask(7));
+        System.out.println(manager2.getSubtask(3));
+        System.out.println(manager2.getHistory());
+        System.out.println(manager2.getSubtask(3));
+        System.out.println(manager2.getHistory());
+        System.out.println(manager2.getSubtask(4));
+        System.out.println(manager2.getEpic(1));
+        System.out.println(manager2.getHistory());
+
+
 
 
     }
