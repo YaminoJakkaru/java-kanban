@@ -47,7 +47,7 @@ public class Managers {
                 }
                 taskManager.identificationNumber = maxId;
 
-                for (int id : Objects.requireNonNull(historyFromString(Files.readString(Path.of(file.getPath()))))) {
+                for (int id : Objects.requireNonNull(historyFromString(lines[lines.length - 1]))) {
                     if (taskManager.tasks.containsKey(id)) {
                         taskManager.historyManager.add(taskManager.getTask(id));
                     } else if (taskManager.epics.containsKey(id)) {

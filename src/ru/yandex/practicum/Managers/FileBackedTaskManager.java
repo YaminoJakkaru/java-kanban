@@ -72,9 +72,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
     public static List<Integer> historyFromString(String value) {
         try {
-            String[] lines = value.split(System.lineSeparator());
             List<Integer> identificationNumbers = new ArrayList<>();
-            String[] lineContents = lines[lines.length - 1].split(",");
+            String[] lineContents = value.split(",");
 
             for (String content : lineContents) {
                 identificationNumbers.add(Integer.parseInt(content));
