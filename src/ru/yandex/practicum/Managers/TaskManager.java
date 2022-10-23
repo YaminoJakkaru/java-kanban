@@ -4,6 +4,7 @@ import ru.yandex.practicum.Tasks.Epic;
 import ru.yandex.practicum.Tasks.Subtask;
 import ru.yandex.practicum.Tasks.Task;
 import java.util.List;
+import java.util.TreeSet;
 
 public interface TaskManager {
 
@@ -39,8 +40,7 @@ public interface TaskManager {
     public void updateEpic(Epic epic) ;
 
     public void updateSubtask(Subtask subtask);
-
-
+    public boolean checkIntersections(Task task);
 
     public void deleteTask(int id) ;
 
@@ -49,5 +49,7 @@ public interface TaskManager {
     public void deleteSubtask(int id) ;
 
     List<Task> getHistory();
+
+    TreeSet<Task> getPrioritizedTasks();
 }
 

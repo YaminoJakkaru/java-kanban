@@ -20,9 +20,9 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         this.file = file;
     }
 
-    private void save() {
+    public void save() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            bw.write("id,type,name,status,description,epic");
+            bw.write("id,type,name,status,description,startTime,duration,epic");
             bw.newLine();
             for (Task task : super.getTasks()) {
                 bw.write(task.toString());
@@ -49,14 +49,15 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         switch (lineContents[1]) {
             case "TASK":
                 return new Task(Integer.parseInt(lineContents[0]), lineContents[2], Status.valueOf(lineContents[3]),
-                        lineContents[4]);
+                        lineContents[4],lineContents[5],Integer.parseInt(lineContents[6]));
             case "EPIC":
 
                 return new Epic(Integer.parseInt(lineContents[0]), lineContents[2], Status.valueOf(lineContents[3]),
-                        lineContents[4]);
+                        lineContents[4],lineContents[5],Integer.parseInt(lineContents[6]));
             case "SUBTASK":
                 return new Subtask(Integer.parseInt(lineContents[0]), lineContents[2], Status.valueOf(lineContents[3]),
-                        lineContents[4], Integer.parseInt(lineContents[5]));
+                        lineContents[4], Integer.parseInt(lineContents[7]),lineContents[5],
+                        Integer.parseInt(lineContents[6]));
         }
         throw new ManagerSaveException();
     }
@@ -71,8 +72,9 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     public static List<Integer> historyFromString(String value) {
+        List<Integer> identificationNumbers = new ArrayList<>();
         try {
-            List<Integer> identificationNumbers = new ArrayList<>();
+
             String[] lineContents = value.split(",");
 
             for (String content : lineContents) {
@@ -80,7 +82,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
             }
             return identificationNumbers;
         } catch (NumberFormatException e) {
-            return null;
+            return identificationNumbers;
         }
     }
 

@@ -47,12 +47,15 @@ public class Managers {
                 }
                 taskManager.identificationNumber = maxId;
 
-                for (int id : Objects.requireNonNull(historyFromString(lines[lines.length - 1]))) {
+
+            }
+            if(lines.length >0) {
+                for (int id : historyFromString(lines[lines.length - 1])) {
                     if (taskManager.tasks.containsKey(id)) {
                         taskManager.historyManager.add(taskManager.getTask(id));
                     } else if (taskManager.epics.containsKey(id)) {
                         taskManager.historyManager.add(taskManager.getEpic(id));
-                    } else if (taskManager.subtasks.containsKey(id)){
+                    } else if (taskManager.subtasks.containsKey(id)) {
                         taskManager.historyManager.add(taskManager.getSubtask(id));
                     }
                 }
