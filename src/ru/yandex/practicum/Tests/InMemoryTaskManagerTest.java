@@ -12,5 +12,4 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
         emptyTaskManager = new InMemoryTaskManager();
         super.setUp();
     }
-
 }
