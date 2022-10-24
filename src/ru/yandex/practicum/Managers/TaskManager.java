@@ -3,8 +3,9 @@ package ru.yandex.practicum.Managers;
 import ru.yandex.practicum.Tasks.Epic;
 import ru.yandex.practicum.Tasks.Subtask;
 import ru.yandex.practicum.Tasks.Task;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 public interface TaskManager {
 
@@ -50,6 +51,6 @@ public interface TaskManager {
 
     List<Task> getHistory();
 
-    TreeSet<Task> getPrioritizedTasks();
+    ArrayList<Task> getPrioritizedTasks();
 }
 

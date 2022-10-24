@@ -14,8 +14,6 @@ public class Task {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.HH:mm");
 
-
-
     public Task( int identificationNumber,String name, Status status, String description,String startTime,long duration) {
         this.name = name;
         this.description = description;
@@ -45,8 +43,6 @@ public class Task {
     public void setDuration(long duration) {
         this.duration = duration;
     }
-
-
 
     public String getName() {
         return name;
@@ -100,6 +96,5 @@ public class Task {
     public String toString() {
         return  getIdentificationNumber()+","+getType()+"," + getName() + ","+getStatus()+
                 "," + getDescription()+","+getStartTime().format(formatter)+","+getDuration();
-
     }
 }

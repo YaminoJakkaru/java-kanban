@@ -87,14 +87,14 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public TreeSet<Task> getPrioritizedTasks(){
+    public ArrayList<Task> getPrioritizedTasks(){
         Comparator<Task> comparator = Comparator.comparingInt(o -> o.getStartTime().getYear()+
                 o.getStartTime().getDayOfYear()+o.getStartTime().getHour()+o.getStartTime().getMinute());
         TreeSet<Task> prioritizedTasks = new TreeSet<>(comparator);
         prioritizedTasks.addAll(getSubtasks());
         prioritizedTasks.addAll(getTasks());
 
-        return prioritizedTasks;
+        return new ArrayList<Task>(prioritizedTasks) ;
     }
 
     public boolean checkIntersections(Task task){

@@ -14,7 +14,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager>{
@@ -25,7 +24,7 @@ class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager>{
          file=new File("resources/test");
         taskManager=new FileBackedTaskManager(file);
         emptyTaskManager = new FileBackedTaskManager(file);
-        initTask();
+        super.setUp();
     }
     @AfterEach
     public void cleanUp(){
@@ -111,12 +110,12 @@ class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager>{
     @Test
     public void emptyLoadFromFileTest(){
 
-        Assertions.assertAll(
-                ()->Assertions.assertEquals(emptyTaskManager.getTasks().toString(),"[]","Не верно читается пустой  файл"),
-                ()->Assertions.assertEquals(emptyTaskManager.getEpics().toString(),"[]","Не верно читается пустой  файл"),
-                ()->Assertions.assertEquals(emptyTaskManager.getSubtasks().toString(),"[]","Не верно читается пустой  файл"),
-                ()->Assertions.assertEquals(emptyTaskManager.getHistory().toString(),"[]","Не верно читается пустой  файл")
-        );
+
+                Assertions.assertEquals(emptyTaskManager.getTasks().toString(),"[]","Не верно читается пустой  файл");
+                Assertions.assertEquals(emptyTaskManager.getEpics().toString(),"[]","Не верно читается пустой  файл");
+                Assertions.assertEquals(emptyTaskManager.getSubtasks().toString(),"[]","Не верно читается пустой  файл");
+                Assertions.assertEquals(emptyTaskManager.getHistory().toString(),"[]","Не верно читается пустой  файл");
+
     }
 
     @Test
