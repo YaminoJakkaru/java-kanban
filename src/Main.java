@@ -37,7 +37,7 @@ public class Main {
         System.out.println(manager2.getEpic(1));
         System.out.println(manager2.getHistory());
         manager2.addTask(new Task(10, " о ", Status.IN_PROGRESS, "Stat","22.02.2022.22:22",30));
-        System.out.println(manager2.getTask(7));
+
         System.out.println(manager2.getSubtask(3));
         System.out.println(manager2.getHistory());
         System.out.println(manager2.getSubtask(3));
