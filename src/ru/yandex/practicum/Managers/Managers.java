@@ -1,11 +1,14 @@
 package ru.yandex.practicum.Managers;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import ru.yandex.practicum.Tasks.Epic;
 import ru.yandex.practicum.Tasks.Subtask;
 import ru.yandex.practicum.Tasks.Task;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
@@ -13,8 +16,9 @@ import java.util.Objects;
 import static ru.yandex.practicum.Managers.FileBackedTaskManager.historyFromString;
 
 public class Managers {
-    public static TaskManager getDefault() {
-        return new InMemoryTaskManager();
+    public static HTTPTaskManager getDefault(String url) throws MalformedURLException {
+        return new HTTPTaskManager(url);
+
     }
 
     public static HistoryManager getDefaultHistory() {
@@ -65,4 +69,5 @@ public class Managers {
         }
         return taskManager;
     }
+
 }

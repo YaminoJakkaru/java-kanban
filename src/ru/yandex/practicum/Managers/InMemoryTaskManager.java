@@ -35,6 +35,7 @@ public class InMemoryTaskManager implements TaskManager {
         if(checkIntersections(task)) {
             return task.getIdentificationNumber();
         }
+
             task.setIdentificationNumber(getNewId());
             tasks.put(task.getIdentificationNumber(), task);
 
@@ -93,11 +94,11 @@ public class InMemoryTaskManager implements TaskManager {
         TreeSet<Task> prioritizedTasks = new TreeSet<>(comparator);
         prioritizedTasks.addAll(getSubtasks());
         prioritizedTasks.addAll(getTasks());
-
-        return new ArrayList<Task>(prioritizedTasks) ;
+        return new ArrayList<>(prioritizedTasks) ;
     }
 
     public boolean checkIntersections(Task task){
+
         for(Task value:getPrioritizedTasks()){
             if(task.getStartTime().isBefore(value.getEndTime())&&task.getEndTime().isAfter(value.getStartTime())){
                 return  true;

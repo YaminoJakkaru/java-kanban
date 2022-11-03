@@ -24,6 +24,7 @@ public class Task {
 
     }
 
+
     public LocalDateTime getEndTime(){
         return startTime.plusMinutes(duration);
     }

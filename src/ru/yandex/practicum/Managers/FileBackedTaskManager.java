@@ -13,12 +13,15 @@ import java.util.*;
 public class FileBackedTaskManager extends InMemoryTaskManager {
 
 
-    private final File file;
+    private  File file;
 
     public FileBackedTaskManager(File file) {
         super();
         this.file = file;
     }
+    public FileBackedTaskManager() {
+    }
+
 
     public void save() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
@@ -45,7 +48,9 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
     public Task fromString(String value) {
         String[] lineContents = value.split(",");
-
+        if(lineContents.length<7){
+            return null;
+        }
         switch (lineContents[1]) {
             case "TASK":
                 return new Task(Integer.parseInt(lineContents[0]), lineContents[2], Status.valueOf(lineContents[3]),
