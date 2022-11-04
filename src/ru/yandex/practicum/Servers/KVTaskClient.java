@@ -1,6 +1,5 @@
 package ru.yandex.practicum.Servers;
 
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -35,6 +34,7 @@ public class KVTaskClient {
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpRequest build = HttpRequest.newBuilder()
                     .uri(URI.create(url + "save/" + key + "?API_TOKEN=" + apiToken))
+                    .header("Accept", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(value))
                     .build();
             httpClient.send(build, HttpResponse.BodyHandlers.ofString());
@@ -48,6 +48,7 @@ public class KVTaskClient {
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url + "load/" + key + "?API_TOKEN=" + apiToken))
+                    .header("Accept", "application/json")
                     .GET()
                     .build();
             HttpResponse<String> send = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

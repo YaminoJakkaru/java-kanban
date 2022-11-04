@@ -1,27 +1,14 @@
 package ru.yandex.practicum.Servers;
 
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
-import ru.yandex.practicum.Tasks.Epic;
-import ru.yandex.practicum.Tasks.Subtask;
-import ru.yandex.practicum.Tasks.Task;
-
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
-
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-/**
- * Постман: https://www.getpostman.com/collections/a83b61d9e1c81c10575c
- */
 public class KVServer {
-
     public static final int PORT = 8078;
     private final String apiToken;
     private final HttpServer server;
@@ -33,21 +20,11 @@ public class KVServer {
         server.createContext("/register", this::register);
         server.createContext("/save", this::save);
         server.createContext("/load", this::load);
-        data.put("task","");
-        data.put("epic","");
-        data.put("subtask","");
-        data.put("history","");
     }
 
-    public static void main(String[] args) throws IOException {
-        KVServer kvServer = new KVServer();
-        kvServer.start();
-    }
-
-    private void load(HttpExchange h)throws IOException {
-
+    private void load(HttpExchange h) throws IOException {
         try {
-            System.out.println("\n/save");
+            System.out.println("\n/load");
             if (!hasAuth(h)) {
                 System.out.println("Запрос не авторизован, нужен параметр в query API_TOKEN со значением апи-ключа");
                 h.sendResponseHeaders(403, 0);
@@ -60,9 +37,9 @@ public class KVServer {
                     h.sendResponseHeaders(400, 0);
                     return;
                 }
-                sendText(h,data.get(key));
-
-                System.out.println("Значение для ключа " + key + " успешно обновлено!");
+                if (data.containsKey(key)) {
+                    sendText(h, data.get(key));
+                }
                 h.sendResponseHeaders(200, 0);
             } else {
                 System.out.println("/save ждёт GET-запрос, а получил: " + h.getRequestMethod());
@@ -71,7 +48,6 @@ public class KVServer {
         } finally {
             h.close();
         }
-
     }
 
     private void save(HttpExchange h) throws IOException {
@@ -127,8 +103,8 @@ public class KVServer {
         System.out.println("API_TOKEN: " + apiToken);
         server.start();
     }
-    public void stop() {
 
+    public void stop() {
         server.stop(1);
     }
 
