@@ -22,18 +22,26 @@ public class HTTPTaskManager extends FileBackedTaskManager {
         for (Task data : super.getTasks()) {
             builder.append(data.toString()).append(System.lineSeparator());
         }
-        taskClient.put("task", builder.toString());
+        if (builder.length() != 0) {
+            taskClient.put("task", builder.toString());
+        }
         builder.setLength(0);
         for (Epic data : super.getEpics()) {
             builder.append(data.toString()).append(System.lineSeparator());
         }
-        taskClient.put("epic", builder.toString());
+        if (builder.length() != 0) {
+            taskClient.put("epic", builder.toString());
+        }
         builder.setLength(0);
         for (Subtask data : super.getSubtasks()) {
             builder.append(data.toString()).append(System.lineSeparator());
         }
-        taskClient.put("subtask", builder.toString());
-        taskClient.put("history", historyToString(historyManager));
+        if (builder.length() != 0) {
+            taskClient.put("subtask", builder.toString());
+        }
+        if (historyToString(historyManager).length() != 0) {
+            taskClient.put("history", historyToString(historyManager));
+        }
     }
 
     public void load() {

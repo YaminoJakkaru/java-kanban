@@ -1,5 +1,7 @@
 package ru.yandex.practicum.Servers;
 
+import com.sun.net.httpserver.Headers;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -34,10 +36,14 @@ public class KVTaskClient {
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpRequest build = HttpRequest.newBuilder()
                     .uri(URI.create(url + "save/" + key + "?API_TOKEN=" + apiToken))
-                    .header("Accept", "application/json")
+                    .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(value))
                     .build();
             httpClient.send(build, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = httpClient.send(build, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() != 200) {
+                throw new RuntimeException();
+            }
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
